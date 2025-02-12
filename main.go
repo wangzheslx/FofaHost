@@ -19,7 +19,7 @@ var (
 	}
 )
 
-// 依赖注入
+
 func wireService() *service.FofaUsecase {
 	logger := mlog.NewLogger()
 	fofaRepo := biz.NewFofaRepo(config, logger)
