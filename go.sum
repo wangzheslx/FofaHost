@@ -1,0 +1,8 @@
+github.com/buger/jsonparser v1.1.1 h1:2PnMjfWD7wBILjqQbt530v576A/cAbQvEW9gGIpYMUs=
+github.com/buger/jsonparser v1.1.1/go.mod h1:6RYKKt7H4d4+iWqouImQ9R2FZql3VbhNgx27UK13J/0=
+github.com/fofapro/fofa-go v0.0.0-20200317042037-c0caee09013d h1:UiqIc/3lkMuU/N3KPO0idxX5JDWxwxEexbc38IV3+0s=
+github.com/fofapro/fofa-go v0.0.0-20200317042037-c0caee09013d/go.mod h1:hcTueqMxqEIm7jD0wK7+rEJVvieYVgXv6Cif8PZsB2U=
+github.com/go-kratos/kratos/v2 v2.8.3 h1:kkNBq0gvdX+b8cbaN+p6Sdh95DgMhx7GimefXb4o7Ss=
+github.com/go-kratos/kratos/v2 v2.8.3/go.mod h1:+Vfe3FzF0d+BfMdajA11jT0rAyJWublRE/seZQNZVxE=
+golang.org/x/sync v0.5.0 h1:60k92dhOjHxJkrqnwsfl8KuaHbn/5dl0lUPUklKo3qE=
+golang.org/x/sync v0.5.0/go.mod h1:Czt+wKu1gCyEFDUtn0jG5QVvpJ6rzVqr5aXyt9drQfk=
