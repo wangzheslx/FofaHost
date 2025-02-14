@@ -1,14 +1,14 @@
 package main
 
 import (
-	"bytes"
-	"context"
 	"encoding/json"
 	"fmt"
 	"myfofa/internal/biz"
 	"myfofa/internal/conf"
 	"myfofa/internal/service"
 	mlog "myfofa/log"
+
+	"github.com/fofapro/fofa-go/fofa"
 )
 
 var (
@@ -28,19 +28,40 @@ func wireService() *service.FofaUsecase {
 }
 
 func main() {
-	app := wireService()
-	//返回结构体
-	resp, err := app.Host(context.Background(), &service.HostReq{
-		Ip: "159.75.231.54",
-	})
-	if err != nil {
-		fmt.Println(err)
+	// app := wireService()
+	// //返回结构体
+	// resp, err := app.HostDtl(context.Background(), &service.HostDtlReq{
+	// 	Ip: "159.75.231.54",
+	// })
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// //fmt.Println(resp)
+	// //格式化输出
+	// bs, _ := json.Marshal(resp)
+	// var out bytes.Buffer
+	// json.Indent(&out, bs, "", "\t")
+	// fmt.Printf("student=%v\n", out.String())
+
+	email := config.Email
+	key := config.Key
+
+	clt := fofa.NewFofaClient([]byte(email), []byte(key))
+	if clt == nil {
+		fmt.Printf("create fofa client\n")
+		return
 	}
-	//fmt.Println(resp)
-	//格式化输出
-	bs, _ := json.Marshal(resp)
-	var out bytes.Buffer
-	json.Indent(&out, bs, "", "\t")
-	fmt.Printf("student=%v\n", out.String())
+	ret, err := clt.QueryAsJSON(1, []byte(`body="小米"&&cert="true"&&status_code="200"`))
+	if err != nil {
+		fmt.Printf("%v\n", err.Error())
+	}
+	fmt.Printf("%s\n", ret)
+	arr, err := clt.QueryAsArray(1, []byte(`domain="163.com"`), []byte("ip,host,title"))
+	if err != nil {
+		fmt.Printf("%v\n", err.Error())
+	}
+	fmt.Printf("count: %d\n", len(arr))
+	encodeArr, _ := json.Marshal(arr)
+	fmt.Printf("\n%s\n", encodeArr)
 
 }

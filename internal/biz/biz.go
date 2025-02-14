@@ -49,3 +49,24 @@ func (f *FofaRepo) Host(ctx context.Context, req *HostReq) (resp *HostResp, err 
 	}
 	return resp, nil
 }
+
+func (f *FofaRepo) HostDtl(ctx context.Context, req *HostDtlReq) (resp *HostDtlResp, err error) {
+	f.log.WithContext(ctx).Info("Repo key : %+v", f.key)
+	q := HostAPIUrl + "/" + req.Ip + "/?detail=true&&key=" + f.key
+	content, err := f.Client.Get(q)
+	if err != nil {
+		f.log.WithContext(ctx).Error("RepoGet: %+v", err)
+	}
+	errmsg, err := jsonparser.GetString(content, "errmsg")
+	if err == nil {
+		f.log.WithContext(ctx).Error("Repomsg: %+v", errmsg)
+		return nil, err
+	}
+	resp = &HostDtlResp{}
+	err = json.Unmarshal(content, resp)
+	if err != nil {
+		f.log.WithContext(ctx).Error("Repo: %+v", err)
+	}
+	return resp, nil
+
+}
